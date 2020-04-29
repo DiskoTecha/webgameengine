@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(3, 6, 9);
+  color: rgb(150, 150, 150);
+  font-family: "Anonymous Pro", monospace;
+  text-align: center;
+}
+
+.title {
+  display: inline-block;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+}
+
+
+
+/* font-family: 'Anonymous Pro', monospace; */
