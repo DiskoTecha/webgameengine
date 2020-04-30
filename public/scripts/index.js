@@ -2,15 +2,6 @@ var canvas = document.getElementById("maincanvas");
 var ctx = canvas.getContext("2d");
 var geodude = new Image();
 
-
-
-$(function() {
-  preLoadImages();
-
-
-});
-
-
 var game = {
   title : "SIMULATE",
   lastRender : 0,
@@ -33,6 +24,9 @@ var game = {
   		};
     })();
   }
+
+  // Preload renderables
+  preLoadImages();
 
   // Main loop
   function main( tFrame ) {
