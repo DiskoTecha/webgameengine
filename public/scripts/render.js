@@ -14,6 +14,9 @@ function render(tFrame) {
   var toBeRendered = renderables.getOrderedArray();
   for (var i = 0; i < toBeRendered.length; i++) {
     let value = toBeRendered[i];
+
+    //...do camera transposing on position values of renderable
+
     ctx.drawImage(value.img, value.pos.x, value.pos.y);
   }
 

@@ -1,9 +1,9 @@
 var displayTime = "0";
 
 function update(timePerFrame, timeAtFrame) {
-  var physObArray = physicsObjects.getOrderedArray();
-  for (var i = 0; i < physObArray.length; i++) {
-    physObArray[i].physicsUpdate(timePerFrame, timeAtFrame);
+  var dynObArray = dynamicObjects.getOrderedArray();
+  for (var i = 0; i < dynObArray.length; i++) {
+    dynObArray[i].dynamicUpdate(timePerFrame, timeAtFrame);
   }
 
   // displayTime = String(timeAtTick);

@@ -1,2 +1,3 @@
 var renderables = new orderedDictionary();
-var physicsObjects = new orderedDictionary();
+var dynamicObjects = new orderedDictionary();
+var collisionObjects = new orderedDictionary();
