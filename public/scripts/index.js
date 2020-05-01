@@ -39,7 +39,9 @@ var game = {
       var timeSinceTick = tFrame - game.lastTick;
       numTicks = Math.floor(timeSinceTick / game.tickLength);
     }
-
+    if (numTicks > 5) {
+      console.warn("framerate loss, multiple updates occuring per frame");
+    }
     queueUpdates(numTicks);
     render(tFrame);
     game.lastRender = tFrame;
@@ -48,7 +50,7 @@ var game = {
   function queueUpdates(numTicks) {
     for(var i=0; i < numTicks; i++) {
       game.lastTick = game.lastTick + game.tickLength;
-      update(game.lastTick);
+      update(game.tickLength, game.lastTick);
     }
   }
 

@@ -1,5 +1,10 @@
 var displayTime = "0";
 
-function update(tickTime) {
-  displayTime = String(tickTime);
+function update(timePerFrame, timeAtFrame) {
+  var physObArray = physicsObjects.getOrderedArray();
+  for (var i = 0; i < physObArray.length; i++) {
+    physObArray[i].physicsUpdate(timePerFrame, timeAtFrame);
+  }
+
+  // displayTime = String(timeAtTick);
 }
