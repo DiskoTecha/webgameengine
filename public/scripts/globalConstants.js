@@ -1,0 +1,2 @@
+const SCREEN_WIDTH = 500;
+const SCREEN_HEIGHT = 300;

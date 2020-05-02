@@ -1,5 +1,5 @@
 class entity {
-  constructor(name, renderLayer, dynamic, initPosX, initPosY) {
+  constructor(name, renderLayer, dynamic, cameraStatic, initPosX, initPosY) {
     this.name = name;
     this.renderLayer = renderLayer;
     this.pos = {
@@ -17,18 +17,25 @@ class entity {
     this.updateCallback = null;
 
     // If renderLayer isn't null/undefined, add to renderables orderedDictionary
-    if (renderLayer !== undefined && renderLayer !== null) {
+    if (typeof renderLayer === 'number') {
       renderables.add(renderLayer, this);
     }
 
     // If dynamic is defined, not null and true, add to dynamicObjects orderedDictionary
-    if (dynamic !== undefined && dynamic !== null && dynamic) {
+    if (typeof dynamic === 'boolean' && dynamic) {
       dynamicObjects.add(0, this);
+    }
+
+    // If cameraStatic is false, undefined, or null, add to cameraTransposed objectList
+    if ((typeof cameraStatic === 'boolean' && !cameraStatic) || cameraStatic === undefined || cameraStatic === null) {
+      cameraTransposed.add(0, this);
     }
 
     // Variables not set at definition
     this.source = null;
     this.maxVel = 0;
+    this.width = 0;
+    this.height = 0;
   }
 
   getPosition() {
@@ -64,6 +71,22 @@ class entity {
     this.maxVel = maxVel;
   }
 
+  getWidth() {
+    return this.width;
+  }
+
+  setWidth(width) {
+    this.width = width;
+  }
+
+  getHeight() {
+    return this.height;
+  }
+
+  setHeight(height) {
+    this.height = height;
+  }
+
   setUpdateCallback(callback) {
     this.updateCallback = callback;
   }
@@ -78,10 +101,10 @@ class entity {
     if (this.updateCallback) {
       this.updateCallback(timePerFrame, timeAtFrame);
     }
-    else {
-      console.log("dynamic set true on entity constructor for " + this.name + ", however updateCallback function has not been set");
-      console.log("use setUpdateCallback() member function on " + this.name + " to activate updating");
-    }
+    // else {
+    //   console.log("dynamic set true on entity constructor for " + this.name + ", however updateCallback function has not been set");
+    //   console.log("use setUpdateCallback() member function on " + this.name + " to activate updating");
+    // }
   }
 }
 

@@ -93,8 +93,9 @@ class orderedDictionary {
   getOrderedArray() {
     // Check if empty orderedDictionary
     if (this.head === null) {
-      return null;
+      return new Array();
     }
+
     // Initialize return array
     var array = new Array();
     // Push the head's value first
