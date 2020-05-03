@@ -36,6 +36,11 @@ class entity {
     this.maxVel = 0;
     this.width = 0;
     this.height = 0;
+    this.imgRect = new rect(this.pos.x, this.pos.x + this.width, this.pos.y, this.pos.y + this.height);
+  }
+
+  getImgRect() {
+    return this.imgRect;
   }
 
   getPosition() {
@@ -45,6 +50,9 @@ class entity {
   setPosition(x, y) {
     this.pos.x = x;
     this.pos.y = y;
+
+    // Now update the rect/s
+    this.imgRect.setRect(this.pos.x, this.pos.x + this.width, this.pos.y, this.pos.y + this.height);
   }
 
   getName() {

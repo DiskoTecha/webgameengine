@@ -15,9 +15,11 @@ function render(tFrame) {
   for (var i = 0; i < toBeRendered.length; i++) {
     let value = toBeRendered[i];
 
-    //...do camera transposing on position values of renderable
-
-    ctx.drawImage(value.img, value.pos.x, value.pos.y);
+    // If within the viewRect (screen)
+    if (checkCollision(value.getImgRect(), activeCamera.getRect())) {
+      // Draw the entity
+      ctx.drawImage(value.img, value.pos.x, value.pos.y);
+    }
   }
 
   //

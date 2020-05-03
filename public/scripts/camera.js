@@ -8,9 +8,11 @@ class camera {
     // Half the height of the screen in pixels
 		this.orthographicSize = orthographicSize;
 
-    // Change this when implementing zoom to be the width/height in zoomed view
+    // Change this when implementing zoom to be the width/height in zoomed view:
     this.viewWidth = SCREEN_WIDTH;
     this.viewHeight = SCREEN_HEIGHT;
+		// Also, might have to change this as well (probably not idk)
+		this.rect = new rect(this.pos.x, this.pos.x + this.viewWidth, this.pos.y, this.pos.y + this.viewHeight);
 
 		this.followTarget = followTarget;
 
@@ -20,6 +22,10 @@ class camera {
     this.updateCallback = null;
 	}
 
+	getRect() {
+		return this.rect;
+	}
+
 	getPosition() {
 		return this.pos;
 	}
@@ -27,7 +33,21 @@ class camera {
   setPosition(x, y) {
     this.pos.x = x;
     this.pos.y = y;
+
+		// Now update the rect
+		this.rect.setRect(this.pos.x, this.pos.x + this.viewWidth, this.pos.y, this.pos.y + this.viewHeight);
   }
+
+	getOrthoGraphicSize() {
+		return this.orthographicSize;
+	}
+
+	setOrthographicSize(size) {
+		this.orthographicSize = orthographicSize;
+
+		// Now update the rect
+		this.rect.setRect(this.pos.x, this.pos.x + this.viewWidth, this.pos.y, this.pos.y + this.viewHeight);
+	}
 
   setFollowTarget(entity) {
     this.followTarget = entity;
