@@ -37,6 +37,9 @@ class entity {
     this.width = 0;
     this.height = 0;
     this.imgRect = new rect(this.pos.x, this.pos.x + this.width, this.pos.y, this.pos.y + this.height);
+
+    // Initialize controlCallback function
+    this.controlCallback = null;
   }
 
   getImgRect() {
@@ -109,10 +112,16 @@ class entity {
     if (this.updateCallback) {
       this.updateCallback(timePerFrame, timeAtFrame);
     }
-    // else {
-    //   console.log("dynamic set true on entity constructor for " + this.name + ", however updateCallback function has not been set");
-    //   console.log("use setUpdateCallback() member function on " + this.name + " to activate updating");
-    // }
+  }
+
+  setControlCallback(callback) {
+    this.controlCallback = callback;
+  }
+
+  control(event) {
+    if (this.controlCallback) {
+      this.controlCallback(event);
+    }
   }
 }
 

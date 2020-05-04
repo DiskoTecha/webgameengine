@@ -40,7 +40,7 @@ var game = {
       numTicks = Math.floor(timeSinceTick / game.tickLength);
     }
     if (numTicks > 5) {
-      console.warn("framerate loss, " + numticks + " updates occuring per frame");
+      console.warn("framerate loss, " + numTicks + " updates occuring per frame");
     }
     queueUpdates(numTicks);
     render(tFrame);

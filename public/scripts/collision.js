@@ -35,12 +35,9 @@ class rect {
   }
 }
 
-var r = new rect();
-console.log(r.left, r.right, r.top, r.bottom);
-
 
 function checkCollision(rect1, rect2) {
-  // Check edges along each axes
+  // Check edges along each axis for absence of overlap
   if ( ! (rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom)) {
     // Colliding
     return true;

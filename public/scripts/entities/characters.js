@@ -8,10 +8,22 @@ mc.setPosition(SCREEN_WIDTH / 2 - mc.getWidth() / 2, SCREEN_HEIGHT / 2 - mc.getH
 
 mc.setUpdateCallback(function (timePerFrame, timeAtFrame) {
   var sPerFrame = timePerFrame / 1000;
-  var pixelsToMove = mc.getMaxVel() * sPerFrame;
+
+  var vel = {
+    x : 0,
+    y : 0
+  }
+
+  if (controller.key.ArrowRight) {
+    vel.x += mc.getMaxVel();
+  }
+  if (controller.key("ArrowLeft")) {
+    vel.x -= mc.getMaxVel();
+  }
+
+  var pixelsToMove = vel.x * sPerFrame;
   var newPosX = mc.getPosition().x + pixelsToMove;
-  var newPosY = mc.getPosition().y - pixelsToMove / 3;
-  mc.setPosition(newPosX, newPosY);
+  mc.setPosition(newPosX, mc.getPosition().y);
 });
 
 // Set followTarget of activeCamera to be the mc
