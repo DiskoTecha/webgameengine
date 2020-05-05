@@ -103,9 +103,10 @@ document.addEventListener('keyup', keyupHandler, false);
 
 function keydownHandler(e) {
   for (var keyPropertyName in controller.key) {
-    if (e.key === keyPropertyName) {
-      controller.key[keyPropertyName] = true;
-      console.log(keyPropertyName);
+    var keyString = keyPropertyName;
+    if (e.key === keyString) {
+      controller.key[keyString] = true;
+      console.log(keyString);
     }
   }
 }
@@ -114,6 +115,7 @@ function keyupHandler(e) {
   for (var keyPropertyName in controller.key) {
     if (e.key === keyPropertyName) {
       controller.key[keyPropertyName] = false;
+      console.log(controller.key.ArrowRight);
     }
   }
 }

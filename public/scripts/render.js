@@ -15,10 +15,24 @@ function render(tFrame) {
   for (var i = 0; i < toBeRendered.length; i++) {
     let value = toBeRendered[i];
 
+    // Find transposed position of entity according to camera position
+    var renderPosX = value.getPosition().x;
+    var renderPosY = value.getPosition().y;
+    var renderRect = value.getImgRect();
+    if (!value.getCameraStatic()) {
+      renderPosX -= activeCamera.getPosition().x;
+      renderPosY -= activeCamera.getPosition().y;
+      var height = renderRect.bottom - renderRect.top;
+      var width = renderRect.right - renderRect.left;
+      renderRect.left = renderPosX;
+      renderRect.top = renderPosY;
+      renderRect.right = renderRect.left + width;
+      renderRect.bottom = renderRect.top + height;
+    }
     // If within the viewRect (screen)
-    if (checkCollision(value.getImgRect(), activeCamera.getRect())) {
+    if (checkCollision(value.getImgRect(), renderRect)) {
       // Draw the entity
-      ctx.drawImage(value.img, value.pos.x, value.pos.y);
+      ctx.drawImage(value.img, renderPosX, renderPosY);
     }
   }
 

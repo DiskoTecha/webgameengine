@@ -2,6 +2,7 @@ class entity {
   constructor(name, renderLayer, dynamic, cameraStatic, initPosX, initPosY) {
     this.name = name;
     this.renderLayer = renderLayer;
+    this.cameraStatic = cameraStatic;
     this.pos = {
       x : initPosX,
       y : initPosY
@@ -34,6 +35,7 @@ class entity {
     // Variables not set at definition
     this.source = null;
     this.maxVel = 0;
+    this.minVel = 0;
     this.width = 0;
     this.height = 0;
     this.imgRect = new rect(this.pos.x, this.pos.x + this.width, this.pos.y, this.pos.y + this.height);
@@ -74,6 +76,14 @@ class entity {
     this.source = source;
   }
 
+  getMinVel() {
+    return this.minVel;
+  }
+
+  setMinVel(minVel) {
+    this.minVel = minVel;
+  }
+
   getMaxVel() {
     return this.maxVel;
   }
@@ -96,6 +106,14 @@ class entity {
 
   setHeight(height) {
     this.height = height;
+  }
+
+  getCameraStatic() {
+    return this.cameraStatic;
+  }
+
+  setCameraStatic(cameraStatic) {
+    this.cameraStatic = cameraStatic;
   }
 
   setUpdateCallback(callback) {
